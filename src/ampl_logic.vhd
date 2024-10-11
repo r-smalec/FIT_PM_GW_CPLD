@@ -103,7 +103,7 @@ begin
       for i in 0 to 6 loop
         dly(i + 1) <= dly(i);
       end loop;
-      dly(0) <= (xor??? (str1 xor str2)) or (cal_str and cnt_out(0));
+      dly(0) <= (or (str1 xor str2)) or (cal_str and cnt_out(0)); --or???
     end if;
   end process;
 

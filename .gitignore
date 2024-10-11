@@ -1,3 +1,12 @@
 *.o
 src/*.o
 tb/*.o
+*.cf
+src/*.cf
+tb/*.cf
+*.ghw
+src/*.ghw
+tb/*.ghw
+*.exe
+src/*.exe
+tb/*.exe

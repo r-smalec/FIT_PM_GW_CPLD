@@ -1,9 +1,9 @@
 SRC_DIR = src
 TB_DIR = tb
 
-VHDL_SRC = $(SRC_DIR)/comps.vhd
-TB_SRC = $(TB_DIR)/comps_tb.vhd
-SIM_TOP = comps_tb
+VHDL_SRC = $(SRC_DIR)/cnt2.vhd
+TB_SRC = $(TB_DIR)/cnt2_tb.vhd
+SIM_TOP = cnt2_tb
 WAVE_FILE = wave.ghw
 
 GHDL = ghdl
