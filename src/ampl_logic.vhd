@@ -27,6 +27,16 @@ architecture Logic_Arch of ampl_logic is
   signal str_div, str1, str2, evnt_i : std_logic_vector (2 downto 0);
   signal cnt_out : std_logic_vector (1 downto 0);
 
+  function "or"(
+  constant l : STD_ULOGIC_VECTOR;
+  constant r : STD_ULOGIC
+) return STD_ULOGIC_VECTOR is
+
+begin
+
+return "0";
+end function;
+
   component mux_latch
     port (
       clk        : in std_logic;
@@ -93,7 +103,7 @@ begin
       for i in 0 to 6 loop
         dly(i + 1) <= dly(i);
       end loop;
-      dly(0) <= (str1 xor str2) or (cal_str and cnt_out(0));
+      dly(0) <= (xor??? (str1 xor str2)) or (cal_str and cnt_out(0));
     end if;
   end process;
 
