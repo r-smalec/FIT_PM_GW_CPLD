@@ -5,6 +5,7 @@ use IEEE.STD_LOGIC_UNSIGNED.all;
 entity ampl_logic is
   port (
     clk     : in std_logic;
+    rstn    : in std_logic;
 
     mux_in_a: in std_logic_vector (11 downto 0); -- mux latch input
     mux_in_b: in std_logic_vector (11 downto 0); -- mux latch input
@@ -13,7 +14,7 @@ entity ampl_logic is
     strb    : in std_logic; -- on f edge & enai str_div = !str_div
     enai    : in std_logic; -- enable to activate f edge on strb
     evnt    : in std_logic; -- event flag
-    dly     : inout std_logic_vector (7 downto 0); -- delay bit chain
+    dly_in  : inout std_logic_vector (7 downto 0); -- delay bit chain
 
     cnt_out : out std_logic_vector (1 downto 0); -- cnt2 output
     evout   : out std_logic; -- true when c_count = "1111111" and cal_str = '1'
@@ -28,15 +29,7 @@ architecture logic of ampl_logic is
   signal str1 : std_logic := '0';
   signal str2 : std_logic := '0';
   signal evnt_i : std_logic_vector (2 downto 0) := (others => '0');
-
-function "or"(
-  constant l : STD_ULOGIC_VECTOR;
-  constant r : STD_ULOGIC
-) return STD_ULOGIC_VECTOR is
-
-begin
-  return "0";
-end function;
+  signal dly : std_logic_vector (7 downto 0) := (others => '0');
 
   component mux_latch
     port (
@@ -81,7 +74,13 @@ begin
 
   process (clk) begin
 
-    if rising_edge(clk) then
+    if rstn = '0' then
+      dly <= dly_in;
+      c_count <= "0000000";
+      cal_str <= '0';
+      evout <= '0';
+    
+    elsif rising_edge(clk) then
       if (evnt_i(2) = '0' and evnt_i(1) = '1') then
         c_count <= "0000000";
         cal_str <= '1';

@@ -10,7 +10,8 @@ architecture bench of ampl_logic_tb is
   constant CLK_PERIOD : time := 10 ns;
   -- Generics
   -- Ports
-  signal clk : std_logic;
+  signal clk      : std_logic;
+  signal rstn     : std_logic;
 
   signal mux_in_a : std_logic_vector (11 downto 0);
   signal mux_in_b : std_logic_vector (11 downto 0);
@@ -19,7 +20,7 @@ architecture bench of ampl_logic_tb is
   signal strb     : std_logic;
   signal enai     : std_logic;
   signal evnt     : std_logic;
-  signal dly      : std_logic_vector (7 downto 0);
+  signal dly_in   : std_logic_vector (7 downto 0);
 
   signal cnt_out  : std_logic_vector (1 downto 0);
   signal evout    : std_logic;
@@ -35,6 +36,7 @@ begin
   ampl_logic_0 : entity work.ampl_logic
   port map (
     clk => clk,
+    rstn => rstn,
 
     mux_in_a => mux_in_a,
     mux_in_b => mux_in_b,
@@ -44,7 +46,7 @@ begin
     enai => enai,
     evnt => evnt,
 
-    dly => dly,
+    dly_in => dly_in,
     cnt_out => cnt_out,
     evout => evout,
     cal_str => cal_str,
@@ -53,7 +55,7 @@ begin
 
   clock_gen: process begin
       
-    for i in 0 to 9 loop
+    for i in 0 to 20 loop
       clk <= '0';
       wait for CLK_PERIOD / 2;  -- Low phase of the clock
       clk <= '1';
@@ -66,11 +68,13 @@ begin
   stimulus: process begin
     mux_in_a <= x"1A1";
     mux_in_b <= x"2B2";
-    dly <= x"0A";
+    dly_in <= x"01";
+    rstn <= '0';
     strb <= '0';
     enai <= '0';
     evnt <= '0';
     wait for CLK_PERIOD;
+    rstn <= '1';
     strb <= '1';
     enai <= '0';
     evnt <= '0';
