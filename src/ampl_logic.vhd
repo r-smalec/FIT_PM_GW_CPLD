@@ -6,35 +6,36 @@ entity ampl_logic is
   port (
     clk     : in std_logic;
 
-    mux_in_a: in std_logic_vector (11 downto 0);
-    mux_in_b: in std_logic_vector (11 downto 0);
-    mux_out : out std_logic_vector (12 downto 0);
+    mux_in_a: in std_logic_vector (11 downto 0); -- mux latch input
+    mux_in_b: in std_logic_vector (11 downto 0); -- mux latch input
+    mux_out : out std_logic_vector (12 downto 0); -- mux latch output
 
-    strb    : in std_logic;
-    enai    : in std_logic;
-    evnt    : in std_logic;
+    strb    : in std_logic; -- on f edge & enai str_div = !str_div
+    enai    : in std_logic; -- enable to activate f edge on strb
+    evnt    : in std_logic; -- event flag
+    dly     : inout std_logic_vector (7 downto 0); -- delay bit chain
 
-    dly     : inout std_logic_vector (7 downto 0);
-    cnt     : out std_logic_vector (1 downto 0);
-    evout   : out std_logic;
-    cal_str : out std_logic;
-    c_count : out std_logic_vector (6 downto 0)
+    cnt_out : out std_logic_vector (1 downto 0); -- cnt2 output
+    evout   : out std_logic; -- true when c_count = "1111111" and cal_str = '1'
+    cal_str : out std_logic; -- true on 1 cycle after c_count = "1111111"
+    c_count : out std_logic_vector (6 downto 0) -- counter inremented every cycle if cnt_out(0) = '1'
   );
 end ampl_logic;
 
-architecture Logic_Arch of ampl_logic is
+architecture logic of ampl_logic is
 
-  signal str_div, str1, str2, evnt_i : std_logic_vector (2 downto 0);
-  signal cnt_out : std_logic_vector (1 downto 0);
+  signal str_div : std_logic := '0';
+  signal str1 : std_logic := '0';
+  signal str2 : std_logic := '0';
+  signal evnt_i : std_logic_vector (2 downto 0) := (others => '0');
 
-  function "or"(
+function "or"(
   constant l : STD_ULOGIC_VECTOR;
   constant r : STD_ULOGIC
 ) return STD_ULOGIC_VECTOR is
 
 begin
-
-return "0";
+  return "0";
 end function;
 
   component mux_latch
@@ -55,12 +56,12 @@ end function;
 
 begin
 
-  cnt2_0 : cnt2 port map (
+  cnt2_inst : cnt2 port map (
     clk => clk,
     o => cnt_out
   );
 
-  mux_latch_0 : mux_latch port map (
+  mux_latch_inst : mux_latch port map (
     in_a => mux_in_a,
     in_b => mux_in_b,
     o => mux_out,
@@ -103,7 +104,7 @@ begin
       for i in 0 to 6 loop
         dly(i + 1) <= dly(i);
       end loop;
-      dly(0) <= (or (str1 xor str2)) or (cal_str and cnt_out(0)); --or???
+      dly(0) <= (str1 xor str2) or (cal_str and cnt_out(0));
     end if;
   end process;
 
@@ -116,4 +117,4 @@ begin
     end if;
   end process;
 
-end Logic_Arch;
+end logic;

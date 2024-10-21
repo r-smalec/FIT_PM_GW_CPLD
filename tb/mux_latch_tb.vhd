@@ -45,8 +45,8 @@ begin
     end process;
 
     stimulus: process begin
-        in_a <= x"0A2";
-        in_b <= x"B10";
+        in_a <= x"1A1";
+        in_b <= x"2B2";
         sel <= "00";
         wait for CLK_PERIOD*2;
         sel <= "01";
