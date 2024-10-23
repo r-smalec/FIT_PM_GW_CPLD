@@ -9,7 +9,8 @@ entity cnt2 is
 end cnt2;
 
 architecture Behavioral of cnt2 is
-signal tmp : STD_LOGIC_VECTOR (1 downto 0);
+signal tmp : STD_LOGIC_VECTOR (1 downto 0) := (others => '0');
+
 
 begin
 process (CLK)
