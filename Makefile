@@ -1,6 +1,12 @@
 SRC_DIR = src
 TB_DIR = tb
 
+TEST_DIR = test
+
+VHDL_SRC_PULSE_DELAY = $(TEST_DIR)/pulse_delay.vhd
+TB_SRC_PULSE_DELAY = $(TEST_DIR)/pulse_delay_tb.vhd
+SIM_TOP_PULSE_DELAY = pulse_delay_tb
+
 VHDL_SRC_CNT2 = $(SRC_DIR)/cnt2.vhd
 TB_SRC_CNT2 = $(TB_DIR)/cnt2_tb.vhd
 SIM_TOP_CNT2 = cnt2_tb
@@ -20,6 +26,8 @@ GTK_WAVE = gtkwave
 
 FLAGS = --std=08 -fsynopsys 
 
+pulse_delay_tb: clean run_pulse_delay view
+
 cnt2_tb: clean run_cnt2 view
 
 mux_latch_tb: clean run_mux_latch view
@@ -27,6 +35,14 @@ mux_latch_tb: clean run_mux_latch view
 ampl_logic_tb: clean run_ampl_logic view
 
 all: run_cnt2 view
+
+compile_pulse_delay:
+	$(GHDL) -a $(FLAGS) $(VHDL_SRC_PULSE_DELAY)
+	$(GHDL) -a $(FLAGS) $(TB_SRC_PULSE_DELAY)
+	$(GHDL) -e $(FLAGS) $(SIM_TOP_PULSE_DELAY)
+
+run_pulse_delay: compile_pulse_delay
+	$(GHDL) -r $(FLAGS) $(SIM_TOP_PULSE_DELAY) --wave=$(WAVE_FILE)
 
 compile_cnt2:
 	$(GHDL) -a $(FLAGS) $(VHDL_SRC_CNT2)
