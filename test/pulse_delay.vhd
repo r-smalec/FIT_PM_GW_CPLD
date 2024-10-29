@@ -3,7 +3,8 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity pulse_delay is
     generic(
-        DELAY_CYCLES : integer := 4
+        DELAY_CYCLES : integer := 4;
+        DURATION_CYCLES : integer := 4
     );
     port(
         clk     : in std_logic;
@@ -15,12 +16,14 @@ end pulse_delay;
 architecture Behavioral of pulse_delay is
     signal pulse : std_logic;
     signal delay_register : std_logic_vector(DELAY_CYCLES-1 downto 0) := (others => '0');
+    signal duration_count : integer range 0 to DURATION_CYCLES := 0;
     signal trig : std_logic := '0';
 begin
     process(clk)
     begin
         if sig_in = '0' then
             delay_register <= (others => '0');
+            duration_count <= 0;
             pulse <= '0';
             trig <= '1';
         elsif rising_edge(clk) then
@@ -29,8 +32,11 @@ begin
                 pulse <= delay_register(DELAY_CYCLES-1);
             end if;
             if pulse = '1' then
-                trig <= '0';
-                pulse <= '0';
+                duration_count <= duration_count + 1;
+                if duration_count = (DURATION_CYCLES-1) then
+                    trig <= '0';
+                    pulse <= '0';
+                end if;
             end if;
         end if;
 

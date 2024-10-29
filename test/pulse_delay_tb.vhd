@@ -10,6 +10,7 @@ architecture bench of pulse_delay_tb is
   constant clk_period : time := 5 ns;
   -- Generics
   constant DELAY_CYCLES : integer := 4;
+  constant DURATION_CYCLES : integer := 4;
   -- Ports
   signal clk : std_logic;
   signal sig_in : std_logic;
@@ -20,7 +21,8 @@ begin
 
   pulse_delay_inst : entity work.pulse_delay
   generic map (
-    DELAY_CYCLES => DELAY_CYCLES
+    DELAY_CYCLES => DELAY_CYCLES,
+    DURATION_CYCLES => DURATION_CYCLES
   )
   port map (
     clk => clk,
@@ -43,7 +45,7 @@ begin
         sig_in <= '0';
         wait for CLK_PERIOD*2;
         sig_in <= '1';
-        wait for CLK_PERIOD*(DELAY_CYCLES+2);
+        wait until pulse_out = '0';
         clk_gen_en <= false;
         wait;
     end process;
