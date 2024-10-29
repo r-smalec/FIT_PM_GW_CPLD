@@ -28,13 +28,14 @@ begin
                 delay_register <= delay_register(DELAY_CYCLES-2 downto 0) & sig_in;
                 pulse <= delay_register(DELAY_CYCLES-1);
             end if;
+            if pulse = '1' then
+                trig <= '0';
+                pulse <= '0';
+            end if;
         end if;
 
-        if pulse = '1' then
-            trig <= '0';
-            pulse <= '0';
-        end if;
     end process;
 
     pulse_out <= pulse;
+
 end Behavioral;
