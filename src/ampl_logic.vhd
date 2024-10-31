@@ -14,7 +14,8 @@ entity ampl_logic is
     strb    : in std_logic; -- on f edge & enai str_div = !str_div
     enai    : in std_logic; -- enable to activate f edge on strb
     evnt    : in std_logic; -- event flag
-    dly_in  : inout std_logic_vector (7 downto 0); -- delay bit chain
+
+    dv      : out std_logic; -- data valid
 
     cnt_out : out std_logic_vector (1 downto 0); -- cnt2 output
     evout   : out std_logic; -- true when c_count = "1111111" and cal_str = '1'
@@ -72,10 +73,12 @@ begin
     end if;
   end process;
 
+  dv <= dly(7);
+
   process (clk) begin
 
     if rstn = '0' then
-      dly <= dly_in;
+      dly <= x"00";
       c_count <= "0000000";
       cal_str <= '0';
       evout <= '0';

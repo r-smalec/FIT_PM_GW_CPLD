@@ -20,7 +20,6 @@ architecture bench of ampl_logic_tb is
   signal strb     : std_logic;
   signal enai     : std_logic;
   signal evnt     : std_logic;
-  signal dly_in   : std_logic_vector (7 downto 0);
 
   signal cnt_out  : std_logic_vector (1 downto 0);
   signal evout    : std_logic;
@@ -30,6 +29,8 @@ architecture bench of ampl_logic_tb is
   signal clk40    : std_logic;
   signal clk20_p  : std_logic;
   signal clk20_n  : std_logic;
+
+  signal clk_gen_en : boolean := true;
 
 begin
 
@@ -46,7 +47,6 @@ begin
     enai => enai,
     evnt => evnt,
 
-    dly_in => dly_in,
     cnt_out => cnt_out,
     evout => evout,
     cal_str => cal_str,
@@ -55,12 +55,11 @@ begin
 
   clock_gen: process begin
       
-    for i in 0 to 20 loop
+    while clk_gen_en loop
       clk <= '0';
-      wait for CLK_PERIOD / 2;  -- Low phase of the clock
+      wait for CLK_PERIOD/2;
       clk <= '1';
-      wait for CLK_PERIOD / 2;  -- High phase of the clock
-      report "Cnt2 simulatoin finished";
+      wait for CLK_PERIOD/2;
     end loop;
     wait;
   end process;
@@ -68,29 +67,37 @@ begin
   stimulus: process begin
     mux_in_a <= x"1A1";
     mux_in_b <= x"2B2";
-    dly_in <= x"01";
+
+    -- trigger using event signal
     rstn <= '0';
     strb <= '0';
     enai <= '0';
     evnt <= '0';
     wait for CLK_PERIOD;
     rstn <= '1';
-    strb <= '1';
     enai <= '0';
     evnt <= '0';
     wait for CLK_PERIOD;
-    strb <= '1';
     enai <= '1';
-    evnt <= '0';
-    wait for CLK_PERIOD;
-    strb <= '0';
-    enai <= '1';
-    evnt <= '0';
-    wait for CLK_PERIOD;
-    strb <= '0';
-    enai <= '1';
-    evnt <= '1';
     wait for CLK_PERIOD*5;
+    evnt <= '1';
+    wait until evout = '1';
+    wait for CLK_PERIOD*100;
+
+    -- trigger using strobe signal
+    rstn <= '0';
+    strb <= '0';
+    enai <= '0';
+    evnt <= '0';
+    wait for CLK_PERIOD;
+    rstn <= '1';
+    enai <= '1';
+    wait for CLK_PERIOD;
+    strb <= '1';
+    wait for CLK_PERIOD*5;
+    strb <= '0';
+    wait for CLK_PERIOD*20;
+    clk_gen_en <= false;
 
     wait;
   end process;
