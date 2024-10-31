@@ -10,7 +10,7 @@ architecture bench of ampl_logic_tb is
   constant CLK_PERIOD : time := 10 ns;
   -- Generics
   -- Ports
-  signal clk      : std_logic;
+  signal clk80      : std_logic;
   signal rstn     : std_logic;
 
   signal mux_in_a : std_logic_vector (11 downto 0);
@@ -18,17 +18,10 @@ architecture bench of ampl_logic_tb is
   signal mux_out  : std_logic_vector (12 downto 0);
 
   signal strb     : std_logic;
-  signal enai     : std_logic;
+  signal dv       : std_logic;
+  signal en       : std_logic;
   signal evnt     : std_logic;
-
-  signal cnt_out  : std_logic_vector (1 downto 0);
   signal evout    : std_logic;
-  signal cal_str  : std_logic;
-  signal c_count  : std_logic_vector (6 downto 0);
-
-  signal clk40    : std_logic;
-  signal clk20_p  : std_logic;
-  signal clk20_n  : std_logic;
 
   signal clk_gen_en : boolean := true;
 
@@ -36,7 +29,7 @@ begin
 
   ampl_logic_0 : entity work.ampl_logic
   port map (
-    clk => clk,
+    clk80 => clk80,
     rstn => rstn,
 
     mux_in_a => mux_in_a,
@@ -44,21 +37,18 @@ begin
     mux_out => mux_out,
 
     strb => strb,
-    enai => enai,
+    dv => dv,
+    en => en,
     evnt => evnt,
-
-    cnt_out => cnt_out,
-    evout => evout,
-    cal_str => cal_str,
-    c_count => c_count
+    evout => evout
   );
 
   clock_gen: process begin
       
     while clk_gen_en loop
-      clk <= '0';
+      clk80 <= '0';
       wait for CLK_PERIOD/2;
-      clk <= '1';
+      clk80 <= '1';
       wait for CLK_PERIOD/2;
     end loop;
     wait;
@@ -71,40 +61,34 @@ begin
     -- trigger using event signal
     rstn <= '0';
     strb <= '0';
-    enai <= '0';
+    en <= '0';
     evnt <= '0';
     wait for CLK_PERIOD;
     rstn <= '1';
-    enai <= '0';
+    en <= '0';
     evnt <= '0';
     wait for CLK_PERIOD;
-    enai <= '1';
-    wait for CLK_PERIOD*5;
+    en <= '1';
+    wait for CLK_PERIOD*6;
     evnt <= '1';
     wait until evout = '1';
-    wait for CLK_PERIOD*100;
 
     -- trigger using strobe signal
+    wait for CLK_PERIOD*6;
     rstn <= '0';
+    wait for CLK_PERIOD;
     strb <= '0';
-    enai <= '0';
     evnt <= '0';
     wait for CLK_PERIOD;
     rstn <= '1';
-    enai <= '1';
     wait for CLK_PERIOD;
     strb <= '1';
-    wait for CLK_PERIOD*5;
+    wait for CLK_PERIOD*6;
     strb <= '0';
-    wait for CLK_PERIOD*20;
+    wait for CLK_PERIOD*100;
     clk_gen_en <= false;
 
     wait;
   end process;
-
-
-  clk20_P <= cnt_out(1);
-  clk20_N <= cnt_out(1);
-  clk40 <= cnt_out(0);
 
 end;
