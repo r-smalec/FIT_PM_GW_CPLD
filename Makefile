@@ -72,6 +72,6 @@ view:
 	$(GTK_WAVE) $(WAVE_FILE)
 
 clean:
-	rm -f *.o *.cf $(WAVE_FILE)
+	rm -f *.o *.cf $(WAVE_FILE) *.exe
 
 .PHONY: all compile run view clean
