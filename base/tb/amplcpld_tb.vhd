@@ -46,10 +46,10 @@ begin
 clock_gen: process begin
         
     while clk_gen_en loop
+      CLK80 <= '1';
+      wait for CLK_PERIOD/2;
       CLK80 <= '0';
-        wait for CLK_PERIOD/2;
-        CLK80 <= '1';
-        wait for CLK_PERIOD/2;
+      wait for CLK_PERIOD/2;
     end loop;
     report "Simulatoin finished";
     wait;
@@ -58,18 +58,26 @@ end process;
 stimulus: process begin
     ADC0 <= x"1A1";
     ADC1 <= x"2B2";
-    STR <= '0';
+    STR <= '1';
     ENA <= '0';
     EV <= '0';
     wait for CLK_PERIOD;
     ENA <= '1';
-    wait for CLK_PERIOD;
+    wait for CLK_PERIOD*5;
+
+    -- trigger using EV signal
+    -- EV <= '1';
+    -- wait until EV_out = '1';
+    -- wait for CLK_PERIOD*20;
+    -- EV <= '0';
+    -- wait for CLK_PERIOD*5;
+
+    -- trigger using STR signal
     STR <= '1';
-    wait for CLK_PERIOD;
+    wait for CLK_PERIOD*100;
     STR <= '0';
-    wait for CLK_PERIOD*5;
-    EV <= '1';
-    wait for CLK_PERIOD*5;
+    wait for CLK_PERIOD*50;
+
     clk_gen_en <= false;
     wait;
 end process;

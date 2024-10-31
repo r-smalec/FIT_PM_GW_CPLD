@@ -26,11 +26,12 @@ architecture Frontend of amplcpld is
 
 signal A,B : STD_LOGIC_VECTOR (11 downto 0);
 signal O : STD_LOGIC_VECTOR (12 downto 0);
-signal CLK, strb,str_div,str1, str2,EVNT, cal_str, enai, EVOUT: STD_LOGIC;
+signal CLK, strb,str1, str2,EVNT, cal_str, enai, EVOUT: STD_LOGIC;
+signal str_div : STD_LOGIC := '0';
 signal CNT : STD_LOGIC_VECTOR (1 downto 0);
-signal dly : STD_LOGIC_VECTOR (7 downto 0);
-signal evnt_i : STD_LOGIC_VECTOR (2 downto 0);
-signal c_count : STD_LOGIC_VECTOR (6 downto 0);
+signal dly : STD_LOGIC_VECTOR (7 downto 0) := (others => '0');
+signal evnt_i : STD_LOGIC_VECTOR (2 downto 0) := (others => '0');
+signal c_count : STD_LOGIC_VECTOR (6 downto 0) := (others => '0');
 
 component mux_latch
     Port ( A : in  STD_LOGIC_VECTOR (11 downto 0);
@@ -113,7 +114,11 @@ if (CLK'event and CLK='1') then
 	
 	
 	str2<=str1; evnt_i<=evnt_i(1 downto 0) & EVNT;
-	for i in 0 to 6 loop dly(i+1)<=dly(i); end loop; dly(0)<= (str1 XOR str2) or (cal_str and CNT(0));
+	dly(0) <= (str1 XOR str2) or (cal_str and CNT(0));
+	for i in 0 to 6 loop
+		dly(i+1)<=dly(i);
+	end loop;
+
 	end if;
 end process;
 
