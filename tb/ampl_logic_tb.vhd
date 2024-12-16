@@ -7,7 +7,7 @@ end;
 
 architecture bench of ampl_logic_tb is
   -- Clock period
-  constant CLK_PERIOD : time := 10 ns;
+  constant CLK_PERIOD : time := 12.5 ns; -- 80MHz refers to 12.5ns
   -- Generics
   -- Ports
   signal clk80      : std_logic;
