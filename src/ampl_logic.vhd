@@ -7,6 +7,10 @@ entity ampl_logic is
     clk80     : in std_logic;
     rstn      : in std_logic;
 
+    clk40     : out std_logic;
+    clk20     : out std_logic;
+    clk20n    : out std_logic;
+
     mux_in_a  : in std_logic_vector (11 downto 0); -- mux latch input
     mux_in_b  : in std_logic_vector (11 downto 0); -- mux latch input
     mux_out   : out std_logic_vector (12 downto 0); -- mux latch output
@@ -31,10 +35,6 @@ architecture logic of ampl_logic is
 
   signal evnt_synch : std_logic_vector (2 downto 0) := (others => '0');
   signal dly        : std_logic_vector (7 downto 0) := (others => '0');
-
-  signal clk40      : std_logic;
-  signal clk20      : std_logic;
-  signal clk20n     : std_logic;
 
   component mux_latch
     port (

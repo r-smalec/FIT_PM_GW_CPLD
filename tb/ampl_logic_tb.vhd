@@ -13,6 +13,10 @@ architecture bench of ampl_logic_tb is
   signal clk80      : std_logic;
   signal rstn     : std_logic;
 
+  signal clk40      : std_logic;
+  signal clk20      : std_logic;
+  signal clk20n     : std_logic;
+
   signal mux_in_a : std_logic_vector (11 downto 0);
   signal mux_in_b : std_logic_vector (11 downto 0);
   signal mux_out  : std_logic_vector (12 downto 0);
@@ -31,6 +35,10 @@ begin
   port map (
     clk80 => clk80,
     rstn => rstn,
+
+    clk40 => clk40,
+    clk20 => clk20,
+    clk20n => clk20n,
 
     mux_in_a => mux_in_a,
     mux_in_b => mux_in_b,
@@ -54,6 +62,18 @@ begin
     wait;
   end process;
 
+  strb_gate: process (strb) begin
+    if rstn = '0' then
+      en <= '0';
+    elsif rising_edge(strb) then
+      if(clk40 = '1') then
+        en <= '1';
+      else
+        en <= '0';
+      end if;
+    end if;
+  end process;
+
   stimulus: process begin
     mux_in_a <= x"1A1";
     mux_in_b <= x"2B2";
@@ -61,14 +81,10 @@ begin
     -- trigger using event signal
     rstn <= '0';
     strb <= '0';
-    en <= '0';
     evnt <= '0';
     wait for CLK_PERIOD;
     rstn <= '1';
-    en <= '0';
     evnt <= '0';
-    wait for CLK_PERIOD;
-    en <= '1';
     wait for CLK_PERIOD*6;
     evnt <= '1';
     wait until evout = '1';
@@ -85,6 +101,13 @@ begin
     strb <= '1';
     wait for CLK_PERIOD*6;
     strb <= '0';
+
+    wait for CLK_PERIOD*20;
+    wait for CLK_PERIOD;
+    strb <= '1';
+    wait for CLK_PERIOD*6;
+    strb <= '0';
+
     wait for CLK_PERIOD*100;
     clk_gen_en <= false;
 
