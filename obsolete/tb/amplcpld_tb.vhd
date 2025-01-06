@@ -11,75 +11,105 @@ architecture bench of amplcpld_tb is
   constant clk_period : time := 12.5 ns;
   -- Generics
   -- Ports
-  signal CLK80 : STD_LOGIC;
-  signal STR : STD_LOGIC;
-  signal ENA : STD_LOGIC;
-  signal DOUT : STD_LOGIC_VECTOR (12 downto 0);
-  signal ADC0 : STD_LOGIC_VECTOR (11 downto 0);
-  signal ADC1 : STD_LOGIC_VECTOR (11 downto 0);
-  signal CLK40 : STD_LOGIC;
-  signal CLK20_P : STD_LOGIC;
-  signal CLK20_N : STD_LOGIC;
-  signal DV : STD_LOGIC;
-  signal EV : STD_LOGIC;
-  signal EV_out : STD_LOGIC;
+
+  signal clk80      : std_logic;
+  signal rstn     : std_logic;
+
+  signal clk40      : std_logic;
+  signal clk20      : std_logic;
+  signal clk20n     : std_logic;
+
+  signal mux_in_a : std_logic_vector (11 downto 0);
+  signal mux_in_b : std_logic_vector (11 downto 0);
+  signal mux_out  : std_logic_vector (12 downto 0);
+
+  signal strb     : std_logic;
+  signal dv       : std_logic;
+  signal en       : std_logic;
+  signal evnt     : std_logic;
+  signal evout    : std_logic;
 
   signal clk_gen_en : boolean := true;
+  signal gate_str_o : std_logic;
 begin
 
   amplcpld_inst : entity work.amplcpld
   port map (
-    CLK80 => CLK80,
-    STR => STR,
-    ENA => ENA,
-    DOUT => DOUT,
-    ADC0 => ADC0,
-    ADC1 => ADC1,
-    CLK40 => CLK40,
-    CLK20_P => CLK20_P,
-    CLK20_N => CLK20_N,
-    DV => DV,
-    EV => EV,
-    EV_out => EV_out
+    CLK80 => clk80,
+    STR => strb,
+    ENA => en,
+    DOUT => mux_out,
+    ADC0 => mux_in_a,
+    ADC1 => mux_in_b,
+    CLK40 => clk40,
+    CLK20_P => clk20,
+    CLK20_N => clk20n,
+    DV => dv,
+    EV => evnt,
+    EV_out => evout
   );
 
 clock_gen: process begin
-        
-    while clk_gen_en loop
-      CLK80 <= '1';
-      wait for CLK_PERIOD/2;
-      CLK80 <= '0';
-      wait for CLK_PERIOD/2;
-    end loop;
-    report "Simulatoin finished";
-    wait;
+      
+  while clk_gen_en loop
+    clk80 <= '0';
+    wait for CLK_PERIOD/2;
+    clk80 <= '1';
+    wait for CLK_PERIOD/2;
+  end loop;
+  wait;
+end process;
+
+gate_delay: process (clk40) begin
+  gate_str_o <= clk40 after 2 ns;
+end process;
+
+strb_latch: process (strb) begin
+  if rstn = '0' then
+    en <= '0';
+  elsif rising_edge(strb) then
+    en <= gate_str_o;
+  end if;
 end process;
 
 stimulus: process begin
-    ADC0 <= x"1A1";
-    ADC1 <= x"2B2";
-    STR <= '1';
-    ENA <= '0';
-    EV <= '0';
-    wait for CLK_PERIOD;
-    ENA <= '1';
-    wait for CLK_PERIOD*5;
+  mux_in_a <= x"1A1";
+  mux_in_b <= x"2B2";
 
-    -- trigger using EV signal
-    -- EV <= '1';
-    -- wait until EV_out = '1';
-    -- wait for CLK_PERIOD*20;
-    -- EV <= '0';
-    -- wait for CLK_PERIOD*5;
+  -- trigger using event signal
+  rstn <= '0';
+  strb <= '0';
+  evnt <= '0';
+  wait for CLK_PERIOD;
+  rstn <= '1';
+  evnt <= '0';
+  wait for CLK_PERIOD*2;
+  evnt <= '1';
+  wait until evout = '1';
 
-    -- trigger using STR signal
-    STR <= '1';
-    wait for CLK_PERIOD*100;
-    STR <= '0';
-    wait for CLK_PERIOD*50;
+  -- trigger using strobe signal
+  wait for CLK_PERIOD*20;
+  rstn <= '0';
+  wait for CLK_PERIOD;
+  strb <= '0';
+  evnt <= '0';
+  wait for CLK_PERIOD;
+  rstn <= '1';
+  wait for CLK_PERIOD;
+  strb <= '1';
+  wait for CLK_PERIOD*6;
+  strb <= '0';
 
-    clk_gen_en <= false;
-    wait;
+  wait for CLK_PERIOD*20;
+  wait for CLK_PERIOD;
+  strb <= '1';
+  wait for CLK_PERIOD*6;
+  strb <= '0';
+
+  wait for CLK_PERIOD*100;
+  clk_gen_en <= false;
+
+  wait;
 end process;
 
 end;
