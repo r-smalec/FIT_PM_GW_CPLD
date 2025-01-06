@@ -27,6 +27,7 @@ architecture bench of ampl_logic_tb is
   signal evnt     : std_logic;
   signal evout    : std_logic;
 
+  signal gate_str_o : std_logic;
   signal clk_gen_en : boolean := true;
 
 begin
@@ -62,15 +63,15 @@ begin
     wait;
   end process;
 
-  strb_gate: process (strb) begin
+  gate_delay: process (clk40) begin
+    gate_str_o <= clk40 after 2 ns;
+  end process;
+
+  strb_latch: process (strb) begin
     if rstn = '0' then
       en <= '0';
     elsif rising_edge(strb) then
-      if(clk40 = '1') then
-        en <= '1';
-      else
-        en <= '0';
-      end if;
+      en <= gate_str_o;
     end if;
   end process;
 

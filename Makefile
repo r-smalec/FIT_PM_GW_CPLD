@@ -11,7 +11,7 @@ VHDL_SRC_CNT2 = $(SRC_DIR)/cnt2.vhd
 TB_SRC_CNT2 = $(TB_DIR)/cnt2_tb.vhd
 SIM_TOP_CNT2 = cnt2_tb
 
-VHDL_SRC_MUX_LATCH = $(SRC_DIR)/mux_latch.vhd
+VHDL_SRC_MUX_LATCH = $(SRC_DIR)/mux_latch.vhd $(SRC_DIR)/cnt2.vhd
 TB_SRC_MUX_LATCH = $(TB_DIR)/mux_latch_tb.vhd
 SIM_TOP_MUX_LATCH = mux_latch_tb
 
