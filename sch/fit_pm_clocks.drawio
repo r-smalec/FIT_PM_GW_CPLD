@@ -1,156 +1,187 @@
 <mxfile host="65bd71144e">
     <diagram id="xOZ5PSezsBWC3icij8oC" name="Page-1">
-        <mxGraphModel dx="1380" dy="822" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+        <mxGraphModel dx="978" dy="483" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="30" style="edgeStyle=none;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.75;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="3" target="6">
+                <mxCell id="30" style="edgeStyle=none;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.75;exitY=0;exitDx=0;exitDy=0;" parent="1" source="3" target="6" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="32" style="edgeStyle=elbowEdgeStyle;html=1;exitX=0.25;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;elbow=vertical;" edge="1" parent="1" source="3" target="4">
+                <mxCell id="32" style="edgeStyle=elbowEdgeStyle;html=1;exitX=0.25;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;elbow=vertical;" parent="1" source="3" target="4" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
                             <mxPoint x="780" y="370"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="34" value="INTA_G_DRV 20MHz" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="32">
+                <mxCell id="34" value="INTA_G_DRV (CLK20_P)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="32" vertex="1" connectable="0">
                     <mxGeometry x="0.2037" y="1" relative="1" as="geometry">
                         <mxPoint x="17" y="-1" as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="33" style="edgeStyle=elbowEdgeStyle;elbow=vertical;html=1;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="3" target="4">
+                <mxCell id="33" style="edgeStyle=elbowEdgeStyle;elbow=vertical;html=1;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" parent="1" source="3" target="4" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
                             <mxPoint x="786" y="340"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="35" value="INTB_G_DRV 20MHz" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="33">
+                <mxCell id="35" value="INTB_G_DRV (CLK20_N)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="33" vertex="1" connectable="0">
                     <mxGeometry x="0.089" relative="1" as="geometry">
                         <mxPoint x="14" as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="42" style="edgeStyle=elbowEdgeStyle;elbow=vertical;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="3" target="40">
+                <mxCell id="42" style="elbow=vertical;html=1;entryX=0.75;entryY=0;entryDx=0;entryDy=0;exitX=0.75;exitY=1;exitDx=0;exitDy=0;" parent="1" source="3" target="48" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <Array as="points">
-                            <mxPoint x="750" y="580"/>
-                        </Array>
+                        <mxPoint x="770" y="520" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="43" value="Gate_STR1_i 40MHz" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="42">
+                <mxCell id="43" value="Gate_STR1_i&lt;br&gt;(CLK40)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="42" vertex="1" connectable="0">
                     <mxGeometry x="0.3787" y="1" relative="1" as="geometry">
-                        <mxPoint as="offset"/>
+                        <mxPoint x="44" y="-29" as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="3" value="CPLD [1:12]" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+                <mxCell id="3" value="CPLD [1:12]" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
                     <mxGeometry x="800" y="400" width="100" height="100" as="geometry"/>
                 </mxCell>
-                <mxCell id="41" style="edgeStyle=elbowEdgeStyle;elbow=vertical;html=1;" edge="1" parent="1" source="4" target="40">
+                <mxCell id="41" style="edgeStyle=elbowEdgeStyle;elbow=vertical;html=1;" parent="1" source="4" target="40" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="4" value="Integrators [1:12]" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="4" value="Integrators [1:12]" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="562" y="400" width="105" height="100" as="geometry"/>
                 </mxCell>
-                <mxCell id="36" style="edgeStyle=elbowEdgeStyle;elbow=vertical;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="6" target="3">
+                <mxCell id="36" style="edgeStyle=elbowEdgeStyle;elbow=vertical;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="6" target="3" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
                             <mxPoint x="1030" y="300"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="37" value="ADC_CLK&lt;br&gt;80MHz" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="36">
+                <mxCell id="37" value="ADC_CLK&lt;br&gt;(CLK80)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="36" vertex="1" connectable="0">
                     <mxGeometry x="-0.1895" y="1" relative="1" as="geometry">
-                        <mxPoint as="offset"/>
+                        <mxPoint x="29" y="-46" as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="6" value="PLL with delay control [1:12]&lt;br&gt;(CDCF5901)" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="47" style="edgeStyle=elbowEdgeStyle;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;elbow=vertical;" edge="1" parent="1" source="6" target="40">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1030" y="560"/>
+                            <mxPoint x="840" y="580"/>
+                            <mxPoint x="890" y="600"/>
+                            <mxPoint x="1030" y="460"/>
+                            <mxPoint x="770" y="580"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="6" value="PLL with delay control [1:12]&lt;br&gt;(CDCF5901)" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="740" y="110" width="270" height="160" as="geometry"/>
                 </mxCell>
-                <mxCell id="24" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="7" target="23">
+                <mxCell id="24" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="7" target="23" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="7" value="CLK fanout (ADCLK854)" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="7" value="CLK fanout (ADCLK854)" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="430" y="120" width="90" height="140" as="geometry"/>
                 </mxCell>
-                <mxCell id="17" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="9" target="7">
+                <mxCell id="17" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="9" target="7" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="18" value="PLL_CLK0" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="17">
+                <mxCell id="18" value="PLL_CLK0" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="17" vertex="1" connectable="0">
                     <mxGeometry x="0.1667" relative="1" as="geometry">
                         <mxPoint x="-7" as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="9" value="CLK generator&amp;nbsp; (CDCE62005)" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="9" value="CLK generator&amp;nbsp; (CDCE62005)" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="230" y="160" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="10" value="Prop. delay 3.1ns" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                <mxCell id="10" value="Prop. delay 3.1ns" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
                     <mxGeometry x="230" y="130" width="120" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="11" value="Prop. delay 2ns" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                <mxCell id="11" value="Prop. delay 2ns" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
                     <mxGeometry x="420" y="90" width="110" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="19" value="" style="endArrow=classic;html=1;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="1" target="9">
+                <mxCell id="19" value="" style="endArrow=classic;html=1;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" parent="1" target="9" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="100" y="175" as="sourcePoint"/>
                         <mxPoint x="230" y="190" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="20" value="PRIM:TCM_CLK" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="19">
+                <mxCell id="20" value="PRIM:TCM_CLK" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="19" vertex="1" connectable="0">
                     <mxGeometry x="-0.1481" y="1" relative="1" as="geometry">
                         <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="21" value="" style="endArrow=classic;html=1;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" edge="1" parent="1" target="9">
+                <mxCell id="21" value="" style="endArrow=classic;html=1;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" parent="1" target="9" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="100" y="205" as="sourcePoint"/>
                         <mxPoint x="240" y="200" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="22" value="SEC:EXT_LEMO_CLK" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="21">
+                <mxCell id="22" value="SEC:EXT_LEMO_CLK" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="21" vertex="1" connectable="0">
                     <mxGeometry x="-0.1481" y="1" relative="1" as="geometry">
                         <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="26" style="edgeStyle=none;html=1;" edge="1" parent="1" source="23">
+                <mxCell id="26" style="edgeStyle=none;html=1;" parent="1" source="23" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="740" y="190" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="27" value="PLL_CLK0[1:12]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="26">
+                <mxCell id="27" value="PLL_CLK0[1:12]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="26" vertex="1" connectable="0">
                     <mxGeometry x="-0.392" y="-2" relative="1" as="geometry">
                         <mxPoint x="17" y="-2" as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="23" value="" style="triangle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="23" value="" style="triangle;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="585" y="165" width="30" height="50" as="geometry"/>
                 </mxCell>
-                <mxCell id="25" value="LVDS buff&lt;br&gt;Prop. delay 1...3.5ns" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                <mxCell id="25" value="LVDS buff&lt;br&gt;Prop. delay 1...3.5ns" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
                     <mxGeometry x="530" y="120" width="130" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="28" value="AND gate prop. delay 1...7.5ns&lt;br&gt;Opamp prop delay 4.5ns" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                <mxCell id="28" value="AND gate prop. delay 1...7.5ns&lt;br&gt;Opamp prop delay 4.5ns" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
                     <mxGeometry x="770" y="70" width="190" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="29" value="refclk &amp;amp;&lt;br&gt;leadlag" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                <mxCell id="29" value="refclk &amp;amp;&lt;br&gt;leadlag" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
                     <mxGeometry x="740" y="170" width="60" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="31" value="dlyctrl" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                <mxCell id="31" value="dlyctrl" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
                     <mxGeometry x="850" y="240" width="50" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="40" value="ADC [1:12]" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="40" value="ADC [1:12]" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="562" y="530" width="105" height="100" as="geometry"/>
                 </mxCell>
-                <mxCell id="44" value="Integrators clock is phase aligned with PLL_CLK0[1:12]" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                <mxCell id="44" value="Integrators clock is phase aligned with PLL_CLK0[1:12]" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
                     <mxGeometry x="550" y="290" width="320" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="45" value="" style="endArrow=classic;html=1;elbow=vertical;entryX=0.75;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" target="6">
+                <mxCell id="45" value="" style="endArrow=classic;html=1;elbow=vertical;entryX=0.75;entryY=1;entryDx=0;entryDy=0;" parent="1" target="6" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="943" y="340" as="sourcePoint"/>
                         <mxPoint x="580" y="350" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="46" value="ADC_CLK_DELAY&lt;br&gt;configurable via SPI" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                <mxCell id="46" value="ADC_CLK_DELAY&lt;br&gt;configurable via SPI" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
                     <mxGeometry x="880" y="340" width="130" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="49" style="edgeStyle=none;html=1;entryX=0.25;entryY=1;entryDx=0;entryDy=0;elbow=vertical;exitX=0.25;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="48" target="3">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="50" value="Gate_STR1_o&lt;br&gt;(ENA)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="49">
+                    <mxGeometry x="-0.2314" relative="1" as="geometry">
+                        <mxPoint x="-45" y="-22" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="48" value="Gate circuit with delay of 2 ns" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="800" y="600" width="100" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="51" value="" style="endArrow=classic;html=1;elbow=vertical;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="48">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="1040" y="650" as="sourcePoint"/>
+                        <mxPoint x="800" y="520" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="52" value="CFD_out (STR)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="51">
+                    <mxGeometry x="0.1976" relative="1" as="geometry">
+                        <mxPoint x="44" as="offset"/>
+                    </mxGeometry>
                 </mxCell>
             </root>
         </mxGraphModel>

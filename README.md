@@ -19,10 +19,16 @@ Output value is switched between two input values which are outputs of two integ
 `in_a` is propagated to output in case strobe signal comes when `cnt(1)` is low and `in_b` when high.
 ![mux_latch_tb_wave](img/mux_latch_tb_wave.png "mux_latch_tb_wave")
 
-## `ampl_logic` module description
+## `amplcpld` module description
 There are two ways in which the module can be activated: using event or using strobe signal.\
 `evnt` is signal generated form previous module in chain as `evout`. When event is triggered 7-bit counter is cleared and counts up to 127. The counter is incremented with every cycle of 40 MHz clock. Output data comes alternately from both integrators, each measurement is marked with `dv` data valid signal.
 ![event_basement_measurement](img/event_basement_measurement.png "event_basement_measurement")\
 `en` signal comes form external D flip-flop which data input is `gate_str_o` and it's clock is `strb` which comes out from CFD (Constant fraction discriminator). `gate_str_o` is `clk40` delayed by 2 ns.
 ![gate_strobe_circuit](img/gate_strobe_circuit.png "gate_strobe_circuit")\
 ![strobe_signal_reaction](img/strobe_signal_reaction.png "strobe_signal_reaction")
+
+## FIT PM clocks architecture
+![fit_pm_clocks](img/fit_pm_clocks.png "fit_pm_clocks")
+
+## FIT PM cpld architecture
+![fit_pm_cpld](img/fit_pm_cpld.png "fit_pm_cpld")
