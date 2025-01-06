@@ -32,3 +32,6 @@ There are two ways in which the module can be activated: using event or using st
 
 ## FIT PM cpld architecture
 ![fit_pm_cpld](img/fit_pm_cpld.png "fit_pm_cpld")
+
+## FIT PM fpga architecture (NEW VERSION)
+![fit_pm_fpga_block](img/fit_pm_fpga_block.png "fit_pm_fpga_block")
