@@ -86,12 +86,12 @@ begin
     wait for CLK_PERIOD;
     rstn <= '1';
     evnt <= '0';
-    wait for CLK_PERIOD*6;
+    wait for CLK_PERIOD*2;
     evnt <= '1';
     wait until evout = '1';
 
     -- trigger using strobe signal
-    wait for CLK_PERIOD*6;
+    wait for CLK_PERIOD*20;
     rstn <= '0';
     wait for CLK_PERIOD;
     strb <= '0';
